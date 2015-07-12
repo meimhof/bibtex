@@ -1,6 +1,6 @@
-.PHONY: pdf html publist
+.PHONY: pdf html publist bibliography
 
-all: pdf html publist
+all: pdf html publist bibliography
 
 
 pdf:
@@ -12,8 +12,11 @@ html:
 publist:
 	$(MAKE) -C publist
 
+bibliography:
+	$(MAKE) -C bibliography
 
 clean:
 	$(MAKE) -C pdf clean
 	$(MAKE) -C html clean
 	$(MAKE) -C publist clean
+	$(MAKE) -C bibliography clean

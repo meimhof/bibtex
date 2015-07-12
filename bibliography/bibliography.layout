@@ -1,0 +1,8 @@
+\\session{\year}
+
+\\procpaper[switch=\format[Number]{\bibtexkey},%
+title={\\textbf{\format[HTMLChars]{\title}}\begin{note}\\hfill\\textbf{\note}\end{note}},%
+author={\format[Authors(FirstLast,FullName),HTMLChars]{\author}\\\\\\textnormal{\format[HTMLChars]{\journal}\begin{volume}, Vol. \volume\end{volume}\begin{number}(\format[FormatPagesForHTML]{\number})\end{number}\format[HTMLChars]{\booktitle}\begin{address}, \address\end{address}\begin{year}, \month. \year\end{year}\begin{pages}, pp. \format[FormatPagesForHTML]{\pages}\end{pages}.\\\\\begin{doi}DOI: \\href{http://dx.doi.org/\doi}{\doi}\end{doi}\begin{doi && isbn}, \end{doi && isbn}\begin{isbn}ISBN: \isbn\end{isbn}}},%
+index={\\index{\format[Authors(LastFirst,FullName,Sep=SEP,LastSep=SEP),HTMLChars]{\author}}},%
+]{\bibtexkey}
+

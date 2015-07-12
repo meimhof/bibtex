@@ -1,0 +1,82 @@
+\\documentclass[a4paper,%twoside,%
+ printed, % [printed] | electronic
+ papers=countpages,% empty | draft | [final] | countpages
+ paperselec=all, %[all] | p_001 | p_fake
+ hyperref={bookmarksdepth=1,bookmarksopen,bookmarksopenlevel=0,%
+ linkcolor=blue,urlcolor=blue},%
+ geometry={text={175truemm,226truemm},% A4 & letter
+ inner=0.69in,top=33.9mm,bottom=38mm,footskip=25mm,voffset=-5mm},%A4
+]{confproc}
+
+\\usepackage{libertine}
+
+%confproc
+\\usepackage[utf8]{inputenc}
+\\usepackage[T1]{fontenc}
+\\usepackage{mathptmx}
+\\usepackage[super]{nth}
+
+
+
+\\renewcommand{\\contentsname}{Bibliography}
+\\renewcommand{\\procpdfauthor}{{Firstname Lastname}}
+\\renewcommand{\\procpdftitle}{{Bibliography}}
+\\renewcommand{\\procpdfsubject}{{}}
+\\renewcommand{\\proclhead}{}
+\\renewcommand{\\procchead}{} 
+\\renewcommand{\\procrhead}{}
+\\renewcommand{\\proclfoot}{}
+\\renewcommand{\\proccfoot}{{\\small \\textendash\\enskip\\thepage\\enskip\\textendash}} %\\textemdash
+\\renewcommand{\\procrfoot}{}
+
+\\author{\\procpdfauthor}
+\\title{\\procpdftitle}
+\\date{Month Year}
+
+
+\\hypersetup{%
+pdfstartview={Fit},
+pdfpagelayout={TwoPageRight},
+}%
+
+
+
+
+
+\\renewcommand{\\PAPERPATH }{../pdf/}
+
+
+\\makeindex
+
+
+\\begin{document}
+
+\\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\\setcounter{page}{1}
+\\pdfbookmark[0]{Preamble}{preamble}
+\\pdfbookmark[1]{Cover}{cover}
+
+%\\maketitle
+\\begin{titlepage}
+\\begin{center}
+\\vspace*{5cm}
+{\\fontsize{2cm}{1em}\\selectfont \\sffamily Bibliography}\\\\[1.5cm]
+{\\fontsize{1cm}{1em}\\selectfont \\sffamily Firstname Lastname}\\\\[0.5cm]
+\\vfill
+{\\fontsize{0.8cm}{1em}\\selectfont \\sffamily Month Year}
+\\end{center}
+\\end{titlepage}
+\\newpage
+
+\\otherpagestyle
+\\tableofcontents
+
+
+
+\\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\\setcounter{page}{1}
+
+\\procday{Journal Articles and Conference Proceedings (refereed)}
+
