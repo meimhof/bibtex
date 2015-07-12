@@ -1,0 +1,124 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2010 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+\documentclass[a4paper,sans]{moderncv}
+
+% moderncv themes
+\moderncvtheme[green]{classic}                 % optional argument are 'blue' (default), 'orange', 'red', 'green', 'grey' and 'roman' (for roman fonts, instead of sans serif fonts)
+
+% character encoding
+\usepackage[utf8]{inputenc}                   % replace by the encoding you are using
+
+% adjust the page margins
+\usepackage[scale=0.8]{geometry}
+\setlength{\hintscolumnwidth}{3.0cm}			% if you want to change the width of the column with the dates
+%\AtBeginDocument{\setlength{\maketitlenamewidth}{6cm}}  % only for the classic theme, if you want to change the width of your name placeholder (to leave more space for your address details
+%\AtBeginDocument{\recomputelengths}                     % required when changes are made to page layout lengths
+
+
+% personal data
+\name{Firstname}{Lastname}
+\title{Publications}               % optional, remove the line if not wanted
+
+%\address{}{}    % optional, remove the line if not wanted
+%\mobile{}                    % optional, remove the line if not wanted
+%\phone[fixed]{}
+%\phone[mobile]{}
+%%\phone{}                      % optional, remove the line if not wanted
+%%\fax{fax (optional)}                          % optional, remove the line if not wanted
+%\email{}                      % optional, remove the line if not wanted
+%%\homepage{homepage (optional)}                % optional, remove the line if not wanted
+%%\extrainfo{additional information (optional)} % optional, remove the line if not wanted
+%\photo[64pt]{}                         % '64pt' is the height the picture must be resized to and 'picture' is the name of the picture file; optional, remove the line if not wanted
+%%\quote{Lebenslauf}                 % optional, remove the line if not wanted
+
+% to show numerical labels in the bibliography; only useful if you make citations in your resume
+\makeatletter
+\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+\makeatother
+
+
+%biblatex
+\usepackage[backend=biber,style=numeric,sorting=mine,bibstyle=ieee,url=false,isbn=true,doi=true,defernumbers=true]{biblatex}
+\AtEveryBibitem{\clearfield{day}}
+\usepackage{csquotes}
+\renewbibmacro*{bbx:savehash}{} %no dash for repeated names, dashed=false in newer biblatex versions
+
+    \DeclareSortingScheme{mine}{
+     \sort{\field{timestamp}}
+    }
+
+
+%http://tex.stackexchange.com/questions/76534/biblatex-print-isbn-only-if-doi-is-not-defined
+%\DeclareSourceMap instead of biber.conf
+
+%Absteigende Nummerierung der bibtex Einträge
+\AtDataInput{%
+  \csnumgdef{entrycount:\strfield{prefixnumber}}{%
+    \csuse{entrycount:\strfield{prefixnumber}}+1}}
+
+\DeclareFieldFormat{labelnumber}{\mkbibdesc{#1}}    
+\newrobustcmd*{\mkbibdesc}[1]{%
+  \number\numexpr\csuse{entrycount:\strfield{prefixnumber}}+1-#1\relax}
+
+\addbibresource{../publications.bib}
+
+\defbibenvironment{bibliography}
+  {\list
+     {\printtext[labelnumberwidth]{% label format from numeric.bbx
+        \printfield{prefixnumber}%
+        \printfield{labelnumber}}}
+     {\setlength{\topsep}{12pt}% layout parameters from moderncvstyleclassic.sty
+      \setlength{\labelwidth}{\hintscolumnwidth}%
+      \setlength{\labelsep}{\separatorcolumnwidth}%
+      \setlength{\itemsep}{5pt}%MI
+      \leftmargin\labelwidth%
+      \advance\leftmargin\labelsep}%
+      \sloppy\clubpenalty4000\widowpenalty4000}
+  {\endlist}
+  {\item}
+
+
+\AtBeginDocument{
+\hypersetup{
+    breaklinks,
+%    baseurl       = http://,
+%    pdfborder     = 0 0 0,
+%    pdfpagemode   = \pdfpagemode,
+%    pdfstartpage  = 1,
+     pdfstartview  = {Fit},
+     pdfpagelayout = {TwoPageRight},
+%    pdfcreator    = {\LaTeX{} with 'moderncv' package},
+%    pdfproducer   = {\LaTeX{}},% will/should be set automatically to the correct TeX engine used
+    bookmarksopen = true,
+    bookmarksdepth= 2,% to show sections and subsections
+%    pdfauthor     = {\@firstname{}~\@lastname{}},
+%    pdftitle      = {\@firstname{}~\@lastname{} -- \@title{}},
+    pdfsubject    = {Publications of \@firstname{}~\@lastname{}},
+    pdfkeywords   = {\@firstname{}~\@lastname{}, \@title{}}}
+}
+
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+\maketitle
+
+\setlength{\hintscolumnwidth}{1.5cm}			% if you want to change the width of the column with the dates
+
+\nocite{*}
+
+\renewcommand{\bibfont}{\normalfont\small}
+
+%\printbibheading
+\printbibliography[keyword=JC,type=article,heading=bibliography,title={Journal Articles (refereed)},prefixnumbers={J}]
+\printbibliography[keyword=JC,type=inproceedings,heading=bibliography,title={Conference Proceedings (refereed, formal proceedings)},prefixnumbers={C}]
+\printbibliography[keyword=W,type=inproceedings,heading=bibliography,title={Workshop Contributions (refereed, non-formal proceedings)},prefixnumbers={W}]
+
+\end{document}
+
+%% end of file `template_en.tex'.
